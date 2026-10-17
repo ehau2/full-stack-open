@@ -10,6 +10,9 @@ app.use(cors())
 // Middleware to parse JSON request bodies
 app.use(express.json())
 
+// Serve static files from the 'dist' directory
+app.use(express.static('dist'))
+
 // Middleware to log HTTP POST requests using morgan
 morgan.token('postData', (req) => {
     if (req.method === 'POST') {
