@@ -17,7 +17,7 @@ const PersonForm = ({ newName, setNewName, newNumber, setNewNumber, persons, set
             replaceNumber(existingPerson)
         }
         else {
-            addPerson(event)
+            addPerson()
         }
     }
 
@@ -31,16 +31,17 @@ const PersonForm = ({ newName, setNewName, newNumber, setNewNumber, persons, set
                     setPersons(persons.map(person =>
                         person.id !== existingPerson.id ? person : returnedPerson
                     ))
+                    setNewName('')
+                    setNewNumber('')
                     setNotification({ message: `Updated number for ${existingPerson.name}`, type: 'success' })
                 })
                 .catch(error => {
-                    setNotification({ message: `Failed to update number for ${existingPerson.name}: ${error.message}`, type: 'error' })
+                    setNotification({ message: `Failed to update number for ${existingPerson.name}: ${error.response?.data?.error || error.message}`, type: 'error' })
                 })
         }
     }
 
-    const addPerson = (event) => {
-        event.preventDefault()
+    const addPerson = () => {
         const newPerson = { name: newName, number: newNumber }
         personService
             .create(newPerson)
@@ -51,7 +52,7 @@ const PersonForm = ({ newName, setNewName, newNumber, setNewNumber, persons, set
                 setNotification({ message: `Added ${newName}`, type: 'success' })
             })
             .catch(error => {
-                setNotification({ message: `Failed to add ${newName}: ${error.message}`, type: 'error' })
+                setNotification({ message: `Failed to add ${newName}: ${error.response?.data?.error || error.message}`, type: 'error' })
             })
     }
 
