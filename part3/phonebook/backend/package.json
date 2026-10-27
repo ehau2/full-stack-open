@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
-  "author": "Eivind Nygård Haugen",
+  "author": "Eivind N. Haugen",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {

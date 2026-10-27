@@ -1,0 +1,8 @@
+### Login with a user, returns a JWT token
+POST http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
